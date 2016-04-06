@@ -85,7 +85,7 @@
 								};
 
 								$.ajax({
-									url: "Controller/Administrator.jsp",
+									url: "Controller/AdministratorPost.jsp?action=Login",
 									method: 'POST',
 									dataType: 'json',
 									data: {
@@ -107,7 +107,7 @@
 												}
 												else
 												{
-													toastr.error("You have entered wrong password, please try again. User and password is <strong>admin/admin</strong> :)", resp.errors, opts);
+													toastr.error("输入错误密码，请再试一次。:)", resp.errors, opts);
 													$passwd.select();
 												}
 											}
