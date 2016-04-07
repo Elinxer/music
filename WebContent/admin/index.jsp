@@ -210,7 +210,7 @@ String meta_title = "控制面板";
 						</a>
 						<ul>
 							<li>
-								<a href="add_administrator.jsp">
+								<a href="addAdministrator.jsp">
 									<span class="title">添加用户</span>
 								</a>
 							</li>
@@ -290,7 +290,7 @@ String meta_title = "控制面板";
 			</div>
 
 		</div>
-
+		
 		<div class="main-content">
 
 			<!-- User Info, Notifications and Menu Bar -->
