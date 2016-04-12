@@ -37,7 +37,7 @@
 			<!-- add class "multiple-expanded" to allow multiple submenus to open -->
 			<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 			<li class="active opened active">
-				<a href="">
+				<a href="./index.jsp">
 					<i class="linecons-cog"></i>
 					<span class="title">控制面板</span>
 				</a>
@@ -49,22 +49,22 @@
 				</a>
 				<ul>
 					<li>
-						<a href="addAdministrator.jsp">
+						<a href="administratorAdd.jsp">
 							<span class="title">添加用户</span>
 						</a>
 					</li>
 					<li>
-						<a href="layout-variants.html">
+						<a href="administratorList.jsp">
 							<span class="title">用户列表</span>
 						</a>
 					</li>
 					<li>
-						<a href="layout-static-sidebar.html">
+						<a href="">
 							<span class="title">系统权限</span>
 						</a>
 					</li>
 					<li>
-						<a href="layout-static-sidebar.html">
+						<a href="">
 							<span class="title">管理群组</span>
 						</a>
 					</li>
