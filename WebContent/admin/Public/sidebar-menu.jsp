@@ -84,18 +84,23 @@
 				</a>
 				<ul>
 					<li>
-						<a href="tables-basic.html">
+						<a href="upload_song.jsp">
 							<span class="title">添加歌曲</span>
 						</a>
 					</li>
 					<li>
-						<a href="tables-responsive.html">
-							<span class="title">歌曲列表</span>
+						<a href="check_song.jsp">
+							<span class="title">查看歌曲</span>
 						</a>
 					</li>
 					<li>
-						<a href="tables-datatables.html">
-							<span class="title">歌曲统计</span>
+						<a href="update_ui.jsp">
+							<span class="title">修改歌曲</span>
+						</a>
+					</li>
+					<li>
+						<a href="delete_song.jsp">
+							<span class="title">删除歌曲</span>
 						</a>
 					</li>
 				</ul>

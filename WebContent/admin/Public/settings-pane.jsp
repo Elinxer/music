@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=utf-8" %>
+<%@ page contentType="text/html;charset=utf-8"%>
 <div class="settings-pane">
 
 		<a href="#" data-toggle="settings-pane" data-animate="true">
