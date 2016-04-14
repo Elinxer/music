@@ -99,7 +99,7 @@
 	<meta name="description" content="Xenon Boostrap Admin Panel" />
 	<meta name="author" content="" />
 
-	<title>Xenon - 管理员编辑</title>
+	<title>TEA - 管理员编辑</title>
 
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
