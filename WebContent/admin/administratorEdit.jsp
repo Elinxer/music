@@ -1,4 +1,94 @@
 <%@ page contentType="text/html;charset=utf-8" %>
+<%@ page import="java.io.*,java.util.*" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+
+<%
+	//此进行连接数据库
+	String url="jdbc:mysql://127.0.0.1:3306/music"; //test为数据库名称
+	String dbuser="root"; //数据库账户
+	String dbpwd="root"; //数据库密码
+
+	String userID 	 = null;
+	String userName  = null;
+	String userEmail = null;
+	String userPassword  = null;
+
+	try
+	{
+		Class.forName("com.mysql.jdbc.Driver"); //加载驱动 JspStudy
+	}
+	catch (ClassNotFoundException e)
+	{
+		e.printStackTrace();
+	}
+	//取得数据库连接conn JspStudy
+	Connection conn = DriverManager.getConnection(url, dbuser, dbpwd);
+
+	PreparedStatement ps=null;
+	ResultSet rs=null;
+
+	try
+	{
+		String administratorId = request.getParameter("administratorId");
+		String sql="select * from music_user where user_id="+administratorId+";";
+
+
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+
+		if(!rs.next()) { /* 账号错误提示 */
+			out.println("信息错误！");
+		} else {
+			userID 	  = new String(rs.getString("user_id"));
+			userName  = new String(rs.getString("user_name"));
+			userEmail = new String(rs.getString("user_email"));
+			userPassword = new String(rs.getString("user_password"));
+
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try
+		{
+			if(rs!=null)
+				rs.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if(ps!=null)
+					ps.close();
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					if(conn!=null)
+						conn.close();
+				}
+				catch (SQLException e)
+				{
+						e.printStackTrace();
+				}
+			}
+		}
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +99,7 @@
 	<meta name="description" content="Xenon Boostrap Admin Panel" />
 	<meta name="author" content="" />
 
-	<title>Xenon - Blank Page</title>
+	<title>Xenon - 管理员编辑</title>
 
 	<link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
 	<link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
@@ -53,7 +143,7 @@
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">添加管理员</h3>
+							<h3 class="panel-title">管理员编辑</h3>
 							<div class="panel-options">
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">–</span>
@@ -66,31 +156,32 @@
 						</div>
 						<div class="panel-body">
 
-							<form role="form" class="form-horizontal" action="Controller/AdministratorPost.jsp?action=administratorAdd" method="post">
+							<form role="form" class="form-horizontal" action="Controller/AdministratorPost.jsp?action=administratorEdit" method="post">
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="field-1">管理员名称</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="field-1" name="username">
+										<input type="text" class="form-control" id="field-1" disabled value="<%=userName%>">
 									</div>
 								</div>
 								<div class="form-group-separator"></div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="field-2">管理员密码</label>
 									<div class="col-sm-10">
-										<input type="password" class="form-control" id="field-2" name="password">
+										<input type="password" class="form-control" id="field-2" name="user_password" value="<%=userPassword%>">
 									</div>
 								</div>
 								<div class="form-group-separator"></div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="field-3">邮箱地址</label>
 									<div class="col-sm-10">
-										<input type="email" class="form-control" id="field-3" name="email">
+										<input type="email" class="form-control" id="field-3" name="user_email" value="<%=userEmail%>">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-2 control-label">&nbsp;</label>
 									<div class="col-sm-10">
+										<input type="hidden" name="user_id" value="<%=userID%>">
 										<button type="submit" class="btn btn-success">提交</button>
 										<a href="./administratorList.jsp" class="btn btn-white">返回列表</a>
 									</div>

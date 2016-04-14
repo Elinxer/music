@@ -57,7 +57,7 @@
 	String errorMessage = "";
 
 	/* 添加管理员 */
-    if (action.equals("AddAdministrator")) {
+    if (action.equals("administratorAdd")) {
         PreparedStatement ps=null;
         ResultSet result = null;
     	try
@@ -66,11 +66,9 @@
             String password = request.getParameter("password");
             String email = request.getParameter("email");
             if (username == "") {
-                out.println("请输入管理员名称！");
-                response.sendRedirect("../addAdministrator.jsp");
+                out.println("请输入管理员名称！<a href='../administratorList.jsp'>返回列表</a>");
             } else if (password == "") {
-                out.println("管理员密码！");
-                response.sendRedirect("../addAdministrator.jsp");
+                out.println("管理员密码！<a href='../administratorList.jsp'>返回列表</a>");
             }
     		String sql="insert into music_user(`user_id`, `user_name`, `user_password`, `user_email`,`user_create_time`,`user_last_login_time`,`user_last_login_ip`)values(null, '"+username+"', '"+password+"', '"+email+"',"+getNowTime()+","+getNowTime()+",'"+getClientIP()+"');";
             String getSql = "select `user_name` from music_user where user_name='"+username+"'";
@@ -80,9 +78,9 @@
             if (result.next() == false) {
                 ps = conn.prepareStatement(sql);
         		ps.executeUpdate(sql); /* 插入数据*/
-                out.println("添加成功！");
+                out.println("添加成功！<a href='../administratorList.jsp'>返回列表</a>");
             } else {
-                out.println("管理员已经存在！");
+                out.println("管理员已经存在！<a href='../administratorList.jsp'>返回列表</a>");
             }
             //out.println(ps);
 
@@ -94,6 +92,43 @@
         out.println(errorMessage);
     }
 
+    /* 编辑管理员 */
+    if (action.equals("administratorEdit")) {
+        String user_id  = request.getParameter("user_id");
+        String password = request.getParameter("user_password");
+        String email    = request.getParameter("user_email");
+
+        Statement ps=null;
+        try {
+            String sql = "update `music_user` set `user_email`='"+email+"',`user_password`='"+password+"' where(user_id='"+user_id+"')";
+            ps = conn.createStatement();
+    		int result = ps.executeUpdate(sql);
+            if (result == 1) {
+                out.println("更新成功！<a href='../administratorList.jsp'>返回列表</a>");
+            } else {
+                out.println("更新失败！<a href='../administratorList.jsp'>返回列表</a>");
+            }
+        } catch (SQLException e) {
+        	e.printStackTrace();
+        }
+    }
+    /* 删除管理员 */
+    if (action.equals("administratorDelete")) {
+        String administratorId  = request.getParameter("administratorId");
+        Statement ps=null;
+        try {
+            String sql = "delete from `music_user` where `user_id`="+administratorId;
+            ps = conn.createStatement();
+    		int result = ps.executeUpdate(sql);
+            if (result == 1) {
+                out.println("删除成功！<a href='../administratorList.jsp'>返回列表</a>");
+            } else {
+                out.println("删除失败！<a href='../administratorList.jsp'>返回列表</a>");
+            }
+        } catch (SQLException e) {
+        	e.printStackTrace();
+        }
+    }
 	/* 管理员登陆 */
     if (action.equals("Login")) {
         String username = request.getParameter("username");/* 管理员名称 */

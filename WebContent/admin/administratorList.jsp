@@ -1,12 +1,34 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ page import="java.io.*,java.util.*" %>
+<%@ page import="java.text.*" %>
+<%@ page import="java.util.Calendar" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
+<%!
+/*
+	秒数转为时间格式为yyyy-MM-dd hh:mm:ss
+	导入包为
+	import="java.text.*;
+	import=java.util.Calendar;
+	str 为秒数
+	format为要转化的时间格式
+*/
+String timechange(String str, String format){// format的格式  yyyy-MM-dd hh:mm:ss
+	str = str+"000";//转化为毫秒
+	DateFormat formatter = new SimpleDateFormat(format);
+	long milliSeconds= Long.parseLong(str);
+	System.out.println(milliSeconds);
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTimeInMillis(milliSeconds);
+	//格式化返回日期
+	return formatter.format(calendar.getTime());
+}
 
+%>
 <%
 	//此进行连接数据库
 	String url="jdbc:mysql://127.0.0.1:3306/music"; //test为数据库名称
@@ -77,7 +99,7 @@
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">管理员列表</h3>
+							<h3 class="panel-title">管理员列表&nbsp;&nbsp;|&nbsp;&nbsp;<a href="./administratorAdd.jsp">添加管理员</a></h3>
 							<div class="panel-options">
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">–</span>
@@ -100,6 +122,7 @@
 											<th>邮箱地址</th>
 											<th>最后登录IP</th>
 											<th>上一次登陆时间</th>
+											<th>操作</th>
 										</tr>
 									</thead>
 
@@ -121,7 +144,11 @@
 													<td><%=rs.getString(2)%></td>
 													<td><%=rs.getString(4)%></td>
 													<td><%=rs.getString(6)%></td>
-													<td><%=rs.getString(7)%></td>
+													<td><%=timechange(rs.getString(7),"yyyy-MM-dd hh:mm:ss")%></td>
+													<td>
+														<a href="./administratorEdit.jsp?administratorId=<%=rs.getString(1)%>" class="btn btn-info">编辑</a>
+														<a href="./Controller/AdministratorPost.jsp?action=administratorDelete&administratorId=<%=rs.getString(1)%>" class="btn btn-white" onclick="return confirm('确认删除吗？');">删除</a>
+													</td>
 												</tr>
 											<%
 												}
