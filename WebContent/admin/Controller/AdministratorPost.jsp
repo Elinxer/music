@@ -72,7 +72,7 @@
             }
     		String sql="insert into music_user(`user_id`, `user_name`, `user_password`, `user_email`,`user_create_time`,`user_last_login_time`,`user_last_login_ip`)values(null, '"+username+"', '"+password+"', '"+email+"',"+getNowTime()+","+getNowTime()+",'"+getClientIP()+"');";
             String getSql = "select `user_name` from music_user where user_name='"+username+"'";
-
+			
             ps = conn.prepareStatement(getSql);
     		result = ps.executeQuery();
             if (result.next() == false) {

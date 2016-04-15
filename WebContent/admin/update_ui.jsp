@@ -406,7 +406,7 @@
 								<div class="col-sm-12">
 								
 									<!-- Combined Table -->
-									<strong>Table Classes Combined</strong>
+									
 									
 									<table class="table table-bordered table-striped table-condensed table-hover">
 										<thead>
@@ -419,8 +419,7 @@
 												<th>时长</th>
 												<th>专辑</th>
 												<th>喜爱</th>
-												<th>歌曲文件</th>
-												<th>词曲文件</th>
+												
 												<th>头像文件</th>
 												<th>图册文件</th>
 												<th>操作</th>
@@ -466,8 +465,7 @@
 													String song_favorite=rs.getString("song_favorite");
 													String song_pictures=rs.getString("song_pictures");
 													String song_avatar=rs.getString("song_avatar");
-													String song_trace=rs.getString("song_trace");
-													String song_lyric=rs.getString("song_lyric");
+													
 													
 											%>
 												<%--这里是jsp片段 --%>
@@ -481,14 +479,13 @@
 														<td ><%=song_length %></td>
 														<td ><%=song_album %></td>
 														<td ><%=song_favorite %></td>
-														<td ><%=song_trace %></td>
-														<td ><%=song_lyric %></td>
+														
 														<td ><%=song_avatar %></td>
 														<td ><%=song_pictures %></td>
 
-														<td ><a type="button" class="btn btn-info btn-single pull-right" href="doupdate.jsp?song_id=<%=song_id%>&song_pictures=<%=song_pictures%>
-														&song_avatar=<%=song_avatar%>&song_lyric=<%=song_lyric%>&song_trace=<%=song_trace%>
-														&song_name=<%=song_name%>&song_singer=<%=song_singer%>&song_lyrics_author=<%=song_lyrics_author%>
+														<td >
+															<a type="button" class="btn btn-info btn-single pull-right" href="doupdate.jsp?song_id=<%=song_id%>&song_pictures=<%=song_pictures%>
+														&song_avatar=<%=song_avatar%>&song_name=<%=song_name%>&song_singer=<%=song_singer%>&song_lyrics_author=<%=song_lyrics_author%>
 														&song_creation_time=<%=song_creation_time%>&song_length=<%=song_length%>&song_album=<%=song_album%>
 														&song_favorite=<%=song_favorite%>">修改</a></td>
 													</tr>

@@ -28,13 +28,18 @@ public String getNowTime() {
 String trace_song=null,trace_lyric=null,trace_avatar=null,trace_pictures=null;
 String song_format=null;
 int song_size=0;
+//允许上传文件类型 
+//String fileType = "mp3,ape,JPG";
+
 //实例化上载bean
 com.jspsmart.upload.SmartUpload mySmartUpload=new com.jspsmart.upload.SmartUpload();
 //初始化
 mySmartUpload.initialize(pageContext);
 //设置上载的最大值50MB
 mySmartUpload.setMaxFileSize(50*1024*1024);
-//上载文件
+//上载文件的类型
+//mySmartUpload.setAllowedFilesList(fileType);
+
 //这里是没有错的
 mySmartUpload.upload();
 //获取歌曲id
@@ -80,8 +85,10 @@ if (!myFile.isMissing())
 String myFileName=myFile.getFileName();
 out.println("文件的文件名:"+myFileName+"<br>");
 //保存路径
-String aa="C:\\Users\\dddyHD\\Desktop\\music\\";
+String aa="D:\\Workspaces\\eclipse\\music\\WebContent\\musics\\";
 //第一个上传框，即上传歌曲文件的信息
+
+
 
 if(i==0){
 	//取得后缀名

@@ -13,34 +13,34 @@
 <body>
 	<%!
 
-/** 
- * 删除单个文件 
- * @param   sPath    被删除文件的文件名 
- * @return 单个文件删除成功返回true，否则返回false 
- */  
-public boolean deleteFile(String sPath) {  
-	boolean flag = false;  
-	File file = new File(sPath);  
-    // 路径为文件且不为空则进行删除  
-    if (file.isFile() && file.exists()) {  
-        file.delete();  
-        flag = true;  
-    }  
-    return flag;  
-}  
-%>
+			/** 
+			 * 删除单个文件 
+			 * @param   sPath    被删除文件的文件名 
+			 * @return 单个文件删除成功返回true，否则返回false 
+			 */  
+			public boolean deleteFile(String sPath) {  
+				boolean flag = false;  
+				File file = new File(sPath);  
+			    // 路径为文件且不为空则进行删除  
+			    if (file.isFile() && file.exists()) {  
+			        file.delete();  
+			        flag = true;  
+			    }  
+			    return flag;  
+			}  
+	%>
 
 	<%!
-/* 获取当前时间戳，10位长，针对mysql */
-public String getNowTime() {
-	Date date = new Date();
-    long time = date.getTime();
-  	//mysq 时间戳只有10位 要做处理
-    String createTime = time + "";
-    createTime = createTime.substring(0, 10);
-	return createTime;
-}
-%>
+			/* 获取当前时间戳，10位长，针对mysql */
+			public String getNowTime() {
+				Date date = new Date();
+			    long time = date.getTime();
+			  	//mysq 时间戳只有10位 要做处理
+			    String createTime = time + "";
+			    createTime = createTime.substring(0, 10);
+				return createTime;
+			}
+	%>
 	<%
 //参数初始化
 String trace_song=null,trace_lyric=null,trace_avatar=null,trace_pictures=null;
@@ -147,7 +147,7 @@ if (!myFile.isMissing())
 String myFileName=myFile.getFileName();
 out.println("文件的文件名:"+myFileName+"<br>");
 //保存路径
-String aa="C:\\Users\\dddyHD\\Desktop\\music\\";
+String aa="D:\\Workspaces\\eclipse\\music\\WebContent\\musics\\";
 //第一个上传框，即上传歌曲文件的信息
 
 if(i==0){
