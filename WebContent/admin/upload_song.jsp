@@ -449,11 +449,10 @@
 								
 								<div class="form-group-separator"></div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="field-1">喜欢推荐</label>
+									<label class="col-sm-2 control-label" for="field-1">喜欢推荐</label>&nbsp&nbsp
 									
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="field-1" placeholder="喜欢填1，其他填0" name="song_favorite" >
-									</div>
+									<input type="radio" name="song_favorite" value="1">喜欢  &nbsp &nbsp
+									<input type="radio" name="song_favorite" value="0">不喜欢
 								</div>
 								
 								<div class="form-group-separator"></div>

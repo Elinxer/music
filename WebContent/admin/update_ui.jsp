@@ -480,6 +480,7 @@
 														<td ><%=song_album %></td>
 														<td ><%=song_favorite %></td>
 														
+														<!--<td ><img src=<%=song_avatar %>/></td>  -->
 														<td ><%=song_avatar %></td>
 														<td ><%=song_pictures %></td>
 
