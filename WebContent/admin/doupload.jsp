@@ -150,7 +150,7 @@ else if(i==2){
 		//输出文件的恶路径
 		out.println("文件的路径"+trace+"<br>");
 		trace_avatar=trace.replaceAll("\\\\","\\\\\\\\");
-		//trace_avatar="music/musics/music_avatar/"+getNowTime()+"."+ext;
+		trace_avatar="/music/musics/music_avatar/"+getNowTime()+"."+ext;
 }
 else if(i==3){
 	
