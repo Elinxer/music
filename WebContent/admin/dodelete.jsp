@@ -33,27 +33,39 @@
 	//删除歌曲相关文件
 	
 		String song_id=request.getParameter("song_id");
-		/*String song_pictures=request.getParameter("song_pictures");
+		String song_pictures=request.getParameter("song_pictures");
 		String song_avatar=request.getParameter("song_avatar");
 		String song_lyric=request.getParameter("song_lyric");
-		String song_trace=request.getParameter("song_trace");*/
-		//这里修改只是为了防止路径中有中文存在
-		String song_pictures=new String(request.getParameter("song_pictures").getBytes("ISO-8859-1"),"utf-8");
+		String song_trace=request.getParameter("song_trace");
+
+		String path=request.getSession().getServletContext().getRealPath("/");
+		//out.println(path+"<br>");
+		String temp_path="\\music\\";
+		//out.println(temp_path+"<br>");
+		//webapps的绝对路径
+		String w_path=path.replace(temp_path,"");
+		out.println(w_path+"<br>");
+
+
+
+		/*//这里修改只是为了防止路径中有中文存在
+	String song_pictures=new String(request.getParameter("song_pictures").getBytes("ISO-8859-1"),"utf-8");
+		
 		String song_avatar=new String(request.getParameter("song_avatar").getBytes("ISO-8859-1"),"utf-8");
 		String song_lyric=new String(request.getParameter("song_lyric").getBytes("ISO-8859-1"),"utf-8");
-		String song_trace=new String(request.getParameter("song_trace").getBytes("ISO-8859-1"),"utf-8");
+		String song_trace=new String(request.getParameter("song_trace").getBytes("ISO-8859-1"),"utf-8");*/
 		out.println(song_id+"<br>");
 		out.println(song_pictures+"<br>");
 		out.println(song_avatar+"<br>");
 		out.println(song_lyric+"<br>");
 		out.println(song_trace+"<br>");
-		out.println("删除歌曲"+deleteFile(song_trace));
-		out.println("删除图册"+deleteFile(song_pictures));
-		out.println("删除头像"+deleteFile(song_avatar));
-		out.println("删除歌词"+deleteFile(song_lyric));
+		out.println("删除歌曲"+deleteFile(w_path+song_trace));
+		out.println("删除图册"+deleteFile(w_path+song_pictures));
+		out.println("删除头像"+deleteFile(w_path+song_avatar));
+		out.println("删除歌词"+deleteFile(w_path+song_lyric));
 		
 	%>
-	<%
+	<%/*
 	//数据库连接
 	//加载驱动com.mysql.jdbc.Driver 
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -73,7 +85,7 @@
 	//删除表中的记录
 	String sql="delete from "+tableName+" where (song_id="+song_id+")";
 	stmt.executeUpdate(sql);
-
+*/
 	%>
 </body>
 </html>

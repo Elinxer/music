@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html;charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=gb2312" pageEncoding="utf-8"%>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,7 +34,7 @@
 </head>
 <body class="page-body">
 
-		<%@ include file="Public/settings-pane.jsp"%>
+		<%@ include file="Public/settings-pane-heng.jsp"%>
 
 	
 	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
@@ -41,7 +42,7 @@
 		<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
 		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
 		<!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
-		<%@ include file="Public/sidebar-menu.jsp"%><!--菜单-->
+		<%@ include file="Public/sidebar-menu-heng.jsp"%><!--菜单-->
 		
 		<div class="main-content">
 					

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html;charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=gb2312" pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,14 +34,14 @@
 </head>
 <body class="page-body">
 
-	<%@ include file="Public/settings-pane.jsp"%>
+	<%@ include file="Public/settings-pane-heng.jsp"%>
 	
 	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 			
 		<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
 		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
 		<!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
-		<%@ include file="Public/sidebar-menu.jsp"%><!--菜单-->
+		<%@ include file="Public/sidebar-menu-heng.jsp"%><!--菜单-->
 		
 		<div class="main-content">
 					
@@ -379,7 +380,7 @@
 					
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">填写歌曲上传信息</h3>
+							<h3 class="panel-title"></h3>
 							<div class="panel-options">
 								<a href="#" data-toggle="panel">
 									<span class="collapse-icon">&ndash;</span>
@@ -396,13 +397,13 @@
 								<%	request.setCharacterEncoding("utf-8");
 								String song_id=request.getParameter("song_id");
 								//out.println(song_id);
-								String song_name=new String(request.getParameter("song_name").getBytes("ISO-8859-1"),"utf-8");
+								String song_name=new String(request.getParameter("song_name"));
 								out.println(song_name);
-								String song_singer=new String(request.getParameter("song_singer").getBytes("ISO-8859-1"),"utf-8");
-								String song_lyrics_author=new String(request.getParameter("song_lyrics_author").getBytes("ISO-8859-1"),"utf-8");
-								String song_creation_time=new String(request.getParameter("song_creation_time").getBytes("ISO-8859-1"),"utf-8");
-								String song_length=new String(request.getParameter("song_length").getBytes("ISO-8859-1"),"utf-8");
-								String song_album=new String(request.getParameter("song_album").getBytes("ISO-8859-1"),"utf-8");
+								String song_singer=new String(request.getParameter("song_singer"));
+								String song_lyrics_author=new String(request.getParameter("song_lyrics_author"));
+								String song_creation_time=new String(request.getParameter("song_creation_time"));
+								String song_length=new String(request.getParameter("song_length"));
+								String song_album=new String(request.getParameter("song_album"));
 								String song_favorite=request.getParameter("song_favorite");
 	
 								out.println(song_favorite);
