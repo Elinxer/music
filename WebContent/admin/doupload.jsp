@@ -25,7 +25,9 @@
 		%>
 		<%	
 
-			String path=request.getSession().getServletContext().getRealPath("/");
+			//String path=request.getSession().getServletContext().getRealPath("/");
+			String path="D:\\JspStudy\\WWW\\music\\";
+			//String trace=path+"WebContent\\musics\\music_file\\";
 			out.println(path+"<br>");
 			//参数初始化
 			String trace_song=null,trace_lyric=null,trace_avatar=null,trace_pictures=null;

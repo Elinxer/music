@@ -65,7 +65,7 @@
 		out.println("删除歌词"+deleteFile(w_path+song_lyric));
 		
 	%>
-	<%/*
+	<%
 	//数据库连接
 	//加载驱动com.mysql.jdbc.Driver 
 	Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -85,7 +85,7 @@
 	//删除表中的记录
 	String sql="delete from "+tableName+" where (song_id="+song_id+")";
 	stmt.executeUpdate(sql);
-*/
+
 	%>
 </body>
 </html>
