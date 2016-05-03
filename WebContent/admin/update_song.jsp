@@ -139,12 +139,12 @@
 			
 			
 			out.println(song_lyric1+"<br>");
-			String path=request.getSession().getServletContext().getRealPath("/");
-			//out.println(path+"<br>");
-			String temp_path="\\music\\";
-			//out.println(temp_path+"<br>");
+			String path=request.getSession().getServletContext().getRealPath("/")+"music\\";
+			out.println(path+"<br>");
+			String temp_path="WebContent\\";
+			out.println(temp_path+"<br>");
 			//webapps的绝对路径
-			String w_path=path.replace(temp_path,"");
+			String w_path=path+temp_path;
 			out.println(w_path+"<br>");
 			//循环取得所有上载的文件
 			for (int i=0;i<mySmartUpload.getFiles().getCount();i++){
@@ -184,14 +184,14 @@
 							trace=newfile.getPath();
 							//输出文件的恶路径
 							out.println("文件物理的路径"+trace+"<br>");
-							String r_path="\\music\\WebContent\\musics\\music_file\\"+newfile.getName();
+							String r_path="musics\\music_file\\"+newfile.getName();
 							out.println("文件绝对的路径"+r_path+"<br>");
 							trace_song=r_path.replaceAll("\\\\", "\\\\\\\\");
 
 							out.println("<br><br><br>");
 							Statement stmt1= conn.createStatement();
 				
-							String sql1="update "+tableName+" set song_trace='"+trace_song+"'";
+							String sql1="update "+tableName+" set song_trace='"+trace_song+"'"+" where song_id="+song_id;
 							stmt1.executeUpdate(sql1);
 							stmt1.close();
 						}
@@ -219,13 +219,13 @@
 							trace=newfile.getPath();
 							//输出文件的恶路径
 							out.println("文件物理的路径"+trace+"<br>");
-							String r_path="\\music\\WebContent\\musics\\music_lyric\\"+newfile.getName();
+							String r_path="musics\\music_lyric\\"+newfile.getName();
 							out.println("文件的路径"+r_path+"<br>");
 							trace_lyric=r_path.replaceAll("\\\\", "\\\\\\\\");
 							out.println("<br><br><br>");
 							
 							Statement stmt2= conn.createStatement(); 
-							String sql2="update "+tableName+" set song_lyric='"+trace_lyric+"'";
+							String sql2="update "+tableName+" set song_lyric='"+trace_lyric+"'"+" where song_id="+song_id;
 							stmt2.executeUpdate(sql2);
 							stmt2.close();
 
@@ -254,12 +254,12 @@
 								trace=newfile.getPath();
 								//输出文件的恶路径
 								out.println("文件的路径"+trace+"<br>");
-								String r_path="\\music\\WebContent\\musics\\music_avatar\\"+newfile.getName();
+								String r_path="musics\\music_avatar\\"+newfile.getName();
 								out.println("文件的路径"+r_path+"<br>");
 								trace_avatar=r_path.replaceAll("\\\\", "\\\\\\\\");
 								out.println("<br><br><br>");
 								Statement stmt3= conn.createStatement(); 
-								String sql3="update "+tableName+" set song_avatar='"+trace_avatar+"'";
+								String sql3="update "+tableName+" set song_avatar='"+trace_avatar+"'"+" where song_id="+song_id;
 								stmt3.executeUpdate(sql3);
 								stmt3.close();
 							}
@@ -287,12 +287,12 @@
 								trace=newfile.getPath();
 								//输出文件的恶路径
 								out.println("文件的路径"+trace+"<br>");
-								String r_path="\\music\\WebContent\\musics\\music_pictures\\"+newfile.getName();
+								String r_path="musics\\music_pictures\\"+newfile.getName();
 								out.println("文件的路径"+r_path+"<br>");
 								trace_pictures=r_path.replaceAll("\\\\", "\\\\\\\\");
 								out.println("<br><br><br>");
 								Statement stmt4= conn.createStatement(); 
-								String sql4="update "+tableName+" set song_pictures='"+trace_pictures+"'";
+								String sql4="update "+tableName+" set song_pictures='"+trace_pictures+"'"+" where song_id="+song_id;
 								stmt4.executeUpdate(sql4);
 								stmt4.close();
 							}
@@ -308,128 +308,7 @@
 					//与前面的if对应
 					}
 
-			/*//循环取得所有上载的文件
-			for (int i=0;i<mySmartUpload.getFiles().getCount();i++){
-			//取得上载的文件
-			com.jspsmart.upload.File myFile = mySmartUpload.getFiles().getFile(i);
-			if (!myFile.isMissing())
-			{
-			//取得上载的文件的文件名
-			String myFileName=myFile.getFileName();
-			out.println("文件的文件名:"+myFileName+"<br>");
-			//保存路径
-			String aa="D:\\Workspaces\\eclipse\\music\\WebContent\\musics\\";
-			//第一个上传框，即上传歌曲文件的信息
-
-			if(i==0){
-				
-				deleteFile(song_trace1);
-				//取得后缀名
-				String ext= mySmartUpload.getFiles().getFile(i).getFileExt();
-				out.println("后缀名："+ext+"<br>");
-				song_format=ext;
-				//取得文件的大小
-				int fileSize=myFile.getSize();
-				out.println("文件的大小"+fileSize+"<br>");
-				song_size=fileSize;
-				//没改名字前的路径
-				String trace=aa+"music_file\\"+myFileName;
-				//将文件保存在服务器端
-				myFile.saveAs(trace,com.jspsmart.upload.SmartUpload.SAVE_PHYSICAL);
-				//当前的时间
-				out.println("当前时间是"+getNowTime());
-				//更改文件的名字，以10个单位的数字表示
-				File file = new File(trace);
-				File newfile=new File(aa+"music_file\\"+getNowTime()+"."+ext);
-				file.renameTo(newfile);
-				trace=newfile.getPath();
-				//输出文件的恶路径
-				out.println("文件的路径"+trace+"<br>");
-				trace_song=trace.replaceAll("\\\\", "\\\\\\\\");
-				Statement stmt1= conn.createStatement();
-				
-				String sql1="update "+tableName+" set song_trace='"+trace_song+"'";
-				stmt1.executeUpdate(sql1);
-				stmt1.close();
-			}
-			else if(i==1){
-				deleteFile(song_lyric1);
-				//取得后缀名
-				String ext= mySmartUpload.getFiles().getFile(i).getFileExt();
-				out.println("后缀名："+ext+"<br>");
-				//没改名字前的路径
-				String trace=aa+"music_lyric\\"+myFileName;
-				//将文件保存在服务器端
-				myFile.saveAs(trace,com.jspsmart.upload.SmartUpload.SAVE_PHYSICAL);
-				//更改文件的名字，以10个单位的数字表示
-				File file = new File(trace);
-				File newfile=new File(aa+"music_lyric\\"+getNowTime()+"."+ext);
-				file.renameTo(newfile);
-				trace=newfile.getPath();
-				//输出文件的恶路径
-				out.println("文件的路径"+trace+"<br>");
-				
-				trace_lyric=trace.replaceAll("\\\\","\\\\\\\\");
-				Statement stmt2= conn.createStatement(); 
-				String sql2="update "+tableName+" set song_lyric='"+trace_lyric+"'";
-				stmt2.executeUpdate(sql2);
-				stmt2.close();
-				}
-			else if(i==2){
-				deleteFile(song_avatar1);
-				//取得后缀名
-					String ext= mySmartUpload.getFiles().getFile(i).getFileExt();
-					out.println("后缀名："+ext+"<br>");
-					//没改名字前的路径
-					String trace=aa+"music_avatar\\"+myFileName;
-					//将文件保存在服务器端
-					myFile.saveAs(trace,com.jspsmart.upload.SmartUpload.SAVE_PHYSICAL);
-					//更改文件的名字，以10个单位的数字表示
-					File file = new File(trace);
-					File newfile=new File(aa+"music_avatar\\"+getNowTime()+"."+ext);
-					file.renameTo(newfile);
-					trace=newfile.getPath();
-					//输出文件的恶路径
-					out.println("文件的路径"+trace+"<br>");
-					trace_avatar=trace.replaceAll("\\\\","\\\\\\\\");
-					
-					Statement stmt3= conn.createStatement(); 
-					String sql3="update "+tableName+" set song_avatar='"+trace_avatar+"'";
-					stmt3.executeUpdate(sql3);
-					stmt3.close();
-			}
-			else if(i==3){
-				deleteFile(song_pictures1);
-				//取得后缀名
-					String ext= mySmartUpload.getFiles().getFile(i).getFileExt();
-					out.println("后缀名："+ext+"<br>");
-						
-					//没改名字前的路径
-					String trace=aa+"music_pictures\\"+myFileName;
-					//将文件保存在服务器端
-					myFile.saveAs(trace,com.jspsmart.upload.SmartUpload.SAVE_PHYSICAL);
-					//更改文件的名字，以10个单位的数字表示
-					File file = new File(trace);
-					File newfile=new File(aa+"music_pictures\\"+getNowTime()+"."+ext);
-					file.renameTo(newfile);
-					trace=newfile.getPath();
-					//输出文件的恶路径
-					out.println("文件的路径"+trace+"<br>");
-					trace_pictures=trace.replaceAll("\\\\","\\\\\\\\");
-					Statement stmt4= conn.createStatement(); 
-					String sql4="update "+tableName+" set song_pictures='"+trace_pictures+"'";
-					stmt4.executeUpdate(sql4);
-					stmt4.close();
-					
-			}
-			}
-			else
-			{	
-				out.println("第"+(i+1)+"没有修改文件"); 	
-			}
-
-			//与前面的if对应
-			}*/
+			
 //歌曲文件路径
 out.println(trace_song);
 //歌词文件路径
@@ -439,15 +318,6 @@ out.println(trace_avatar);
 //歌曲图册路径
 out.println(trace_pictures);
 
-//sql="update "+tableName+" set song_trace='"+trace_song+"'";
-
-/*
-
-
-
-
-
-*/
 %>
 
 

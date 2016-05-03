@@ -4,11 +4,11 @@
 
 var musicList = [
     {
-        title : '爱囚',
-        singer : '庄心妍',
-        cover  : 'src/img/Maroon5.jpg',
-        src    : 'musics/q111.mp3',
-		lyric  : "src/data/爱囚.lrc"
+       lyric:"src/data/爱囚.lrc",
+        singer:'庄心妍',
+        cover :'src/img/Maroon5.jpg',
+        "src":"musics/q111.mp3",
+		"title":"爱囚5"
     },
     {
         title : '车站',
@@ -38,11 +38,5 @@ var musicList = [
         src    : 'musics/q111.mp3',
 		lyric  : null
     },
-    {
-        title : 'My Love',
-        singer : 'WestLife',
-        cover  : 'src/img/Maroon5.jpg',
-        src    : 'musics/q111.mp3',
-		lyric  : null
-    }
+  
 ];

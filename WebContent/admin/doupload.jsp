@@ -25,8 +25,8 @@
 		%>
 		<%	
 
-			//String path=request.getSession().getServletContext().getRealPath("/");
-			String path="D:\\JspStudy\\WWW\\music\\";
+			String path=request.getSession().getServletContext().getRealPath("/")+"music\\";
+			//String path="D:\\JspStudy\\WWW\\music\\";
 			//String trace=path+"WebContent\\musics\\music_file\\";
 			out.println(path+"<br>");
 			//参数初始化
@@ -111,7 +111,8 @@
 							trace=newfile.getPath();
 							//输出文件的恶路径
 							out.println("文件物理的路径"+trace+"<br>");
-							String r_path="\\music\\WebContent\\musics\\music_file\\"+newfile.getName();
+							//String r_path="\\music\\WebContent\\musics\\music_file\\"+newfile.getName();
+							String r_path="musics\\music_file\\"+newfile.getName();
 							out.println("文件绝对的路径"+r_path+"<br>");
 							trace_song=r_path.replaceAll("\\\\", "\\\\\\\\");
 
@@ -136,7 +137,8 @@
 							trace=newfile.getPath();
 							//输出文件的恶路径
 							out.println("文件物理的路径"+trace+"<br>");
-							String r_path="\\music\\WebContent\\musics\\music_lyric\\"+newfile.getName();
+						//String r_path="\\music\\WebContent\\musics\\music_lyric\\"+newfile.getName();
+							String r_path="musics\\music_lyric\\"+newfile.getName();
 							out.println("文件的路径"+r_path+"<br>");
 							trace_lyric=r_path.replaceAll("\\\\", "\\\\\\\\");
 							out.println("<br><br><br>");
@@ -160,7 +162,7 @@
 								trace=newfile.getPath();
 								//输出文件的恶路径
 								out.println("文件的路径"+trace+"<br>");
-								String r_path="\\music\\WebContent\\musics\\music_avatar\\"+newfile.getName();
+								String r_path="musics\\music_avatar\\"+newfile.getName();
 								out.println("文件的路径"+r_path+"<br>");
 								trace_avatar=r_path.replaceAll("\\\\", "\\\\\\\\");
 								out.println("<br><br><br>");
@@ -184,7 +186,7 @@
 								trace=newfile.getPath();
 								//输出文件的恶路径
 								out.println("文件的路径"+trace+"<br>");
-								String r_path="\\music\\WebContent\\musics\\music_pictures\\"+newfile.getName();
+								String r_path="musics\\music_pictures\\"+newfile.getName();
 								out.println("文件的路径"+r_path+"<br>");
 								trace_pictures=r_path.replaceAll("\\\\", "\\\\\\\\");
 								out.println("<br><br><br>");
