@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=utf-8" %>
+<%@ page pageEncoding="utf-8" %>
+<%@ page import="java.sql.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="net.sf.json.JSONObject"%>
+<%@ page import="net.sf.json.JSONArray"%>
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
@@ -66,8 +71,64 @@
 <div class="m-demo-copyright">
     <p>Copyright © 2012-2015 Smohan. All Rights Reserved.V.5.0.3.蜀ICP备13000297号-2.</p>
 </div>
+<%
+    //数据库连接
 
-<script src="src/js/musicList.js"></script>
+    //加载驱动com.mysql.jdbc.Driver 
+    Class.forName("com.mysql.jdbc.Driver").newInstance();
+    //数据库用户名  
+    String userName = "root";
+    //密码  
+    String userPasswd = "root";
+    //数据库名  
+    String dbName = "music"; 
+    //表名  
+    String tableName = "music_song"; 
+    //建立连接 
+    Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName+"?useUnicode=true&characterEncoding=utf8",userName,userPasswd);
+    //创建Statement（负责执行sql语句）  
+    Statement stmt= conn.createStatement();
+    String sql="select `song_id`,`song_name`,`song_singer`,`song_lyrics_author`,`song_creation_time`,`song_length`,`song_album`,`song_favorite`,`song_pictures`,`song_avatar`,`song_lyric`,`song_trace` from music_song;";
+    ResultSet rs= stmt.executeQuery(sql);
+    Map<String, Object> map = new HashMap<String, Object>();
+    List<Map> list = new ArrayList<Map>();
+    Map user;
+    while(rs.next()){
+    //依据数据库中的字段名打印数据                                                    
+    String song_id=rs.getString("song_id");
+    String song_name=rs.getString("song_name");
+    String song_singer=rs.getString("song_singer");
+    String song_lyrics_author=rs.getString("song_lyrics_author");
+    String song_creation_time=rs.getString("song_creation_time");
+    String song_length=rs.getString("song_length");
+    String song_album=rs.getString("song_album");
+    String song_favorite=rs.getString("song_favorite");
+    String song_pictures=rs.getString("song_pictures").replace("\\","/");
+    String song_avatar=rs.getString("song_avatar");
+    String song_trace=rs.getString("song_trace").replace("\\","/");
+    String song_lyric=rs.getString("song_lyric").replace("\\","/");
+
+
+    map.put("title", song_name);
+    map.put("singer", song_singer);
+    map.put("cover", song_pictures);
+    map.put("src", song_trace);
+    map.put("lyric", song_lyric);
+
+    JSONObject jsonObject = JSONObject.fromObject(map);
+    user = map;
+    list.add(jsonObject);
+            
+
+            
+    }
+    JSONArray jsonArray = JSONArray.fromObject(list);
+        // out.println(jsonArray);   
+
+ %>  
+ 
+ <script>var musicList=<%=jsonArray%></script>
+<!-- <script src="src/js/musicList.js"></script> -->
 <script src="src/js/smusic.js"></script>
 <script>
     new SMusic({

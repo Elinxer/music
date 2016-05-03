@@ -39,11 +39,11 @@
 		String song_trace=request.getParameter("song_trace");
 
 		String path=request.getSession().getServletContext().getRealPath("/");
-		//out.println(path+"<br>");
-		String temp_path="\\music\\";
-		//out.println(temp_path+"<br>");
+		out.println(path+"<br>");
+		String temp_path="\\music\\WebContent\\";
+		out.println(temp_path+"<br>");
 		//webapps的绝对路径
-		String w_path=path.replace(temp_path,"");
+		String w_path=path+temp_path;
 		out.println(w_path+"<br>");
 
 
